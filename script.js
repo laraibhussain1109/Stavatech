@@ -1,219 +1,181 @@
-/*menu*/
+"use strict";
 
-const menuBtn = document.querySelector(".menu-btn");
+const SITE_CONFIG = {
+  // Add the official WhatsApp number including country code.
+  // Example format for India: 919876543210
+  whatsappNumber: "",
+  linkedinUrl: "https://www.linkedin.com/company/stavatech/",
+  enquiryEmail: "info@stavatech.co.in",
+};
+
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+const header = document.querySelector(".site-header");
+const progress = document.querySelector(".scroll-progress");
+const backToTop = document.querySelector(".back-to-top");
+
+function handleScroll() {
+  const y = window.scrollY;
+  header?.classList.toggle("scrolled", y > 24);
+  backToTop?.classList.toggle("visible", y > 600);
+  if (progress) {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.width = `${max > 0 ? (y / max) * 100 : 0}%`;
+  }
+}
+window.addEventListener("scroll", handleScroll, { passive: true });
+handleScroll();
+backToTop?.addEventListener("click", () => window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" }));
+
+// Accessible mobile navigation.
+const menuButton = document.querySelector(".menu-btn");
 const navLinks = document.querySelector(".nav-links");
-
-if (menuBtn) {
-  menuBtn.addEventListener("click", function () {
-    navLinks.classList.toggle("show");
-  });
+function setMenu(open) {
+  if (!menuButton || !navLinks) return;
+  menuButton.setAttribute("aria-expanded", String(open));
+  menuButton.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+  navLinks.classList.toggle("open", open);
+  document.body.classList.toggle("menu-open", open);
 }
-
-/*closemenu*/
-
-const links = document.querySelectorAll(".nav-links a");
-
-links.forEach(function (link) {
-  link.addEventListener("click", function () {
-    if (navLinks) {
-      navLinks.classList.remove("show");
-    }
-  });
+menuButton?.addEventListener("click", () => setMenu(menuButton.getAttribute("aria-expanded") !== "true"));
+navLinks?.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setMenu(false)));
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") setMenu(false);
+});
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 1023) setMenu(false);
 });
 
-/*HERO IMAGE SLIDESHOW*/
-
-const slides = document.querySelectorAll(".slide");
-
-let currentSlide = 0;
-
-function showNextSlide() {
-  if (slides.length === 0) {
-    return;
-  }
-
-  slides[currentSlide].classList.remove("active");
-  slides[currentSlide].classList.add("previous");
-
-  // Move to next slide
-  currentSlide++;
-
-  if (currentSlide >= slides.length) {
-    currentSlide = 0;
-  }
-
-  slides[currentSlide].classList.remove("previous");
-  slides[currentSlide].classList.add("active");
-
-  slides.forEach((slide, index) => {
-    if (index !== currentSlide) {
-      setTimeout(() => {
-        slide.classList.remove("previous");
-      }, 1000);
-    }
-  });
-}
-
-/* Change image*/
-if (slides.length > 0) {
-  setInterval(showNextSlide, 5000);
-}
-
-/* active nav link*/
-
-const currentPage = window.location.pathname.split("/").pop();
-
-links.forEach(function (link) {
-  const linkPage = link.getAttribute("href");
-  if (
-    linkPage === currentPage ||
-    (currentPage === "" && linkPage === "index.html")
-  ) {
+// Match the active nav item to the current static page.
+const pageName = window.location.pathname.split("/").pop() || "index.html";
+document.querySelectorAll(".nav-links a").forEach((link) => {
+  if (link.getAttribute("href")?.split("#")[0] === pageName) {
     link.classList.add("active");
+    link.setAttribute("aria-current", "page");
   }
 });
 
-/*back to top*/
-
-const backToTop = document.getElementById("backToTop");
-
-window.addEventListener("scroll", function () {
-  if (backToTop) {
-    if (window.scrollY > 300) {
-      backToTop.style.display = "block";
-    } else {
-      backToTop.style.display = "none";
-    }
-  }
-});
-
-if (backToTop) {
-  backToTop.addEventListener("click", function () {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  });
+// Hero crossfade stops when motion is reduced or the tab is hidden.
+const heroSlides = [...document.querySelectorAll(".hero-slide")];
+let heroIndex = 0;
+let heroTimer;
+function advanceHero() {
+  heroSlides[heroIndex]?.classList.remove("active");
+  heroIndex = (heroIndex + 1) % heroSlides.length;
+  heroSlides[heroIndex]?.classList.add("active");
 }
-
-/*contact form*/
-
-const contactForm = document.getElementById("contactForm");
-
-if (contactForm) {
-  contactForm.addEventListener("submit", function (event) {
-    event.preventDefault();
-    alert("Thank you! Your message has been submitted.");
-    contactForm.reset();
-  });
+function manageHeroTimer() {
+  clearInterval(heroTimer);
+  if (heroSlides.length > 1 && !reducedMotion && !document.hidden) heroTimer = setInterval(advanceHero, 5500);
 }
+document.addEventListener("visibilitychange", manageHeroTimer);
+manageHeroTimer();
 
-/*scroll animation*/
-
-const cards = document.querySelectorAll(
-  ".service-card, .product-card, .about-text, .about-image",
-);
-
-const observer = new IntersectionObserver(
-  function (entries) {
-    entries.forEach(function (entry) {
+// Progressive reveal system. Content remains visible if IntersectionObserver is unavailable.
+const revealItems = document.querySelectorAll(".reveal");
+if (!reducedMotion && "IntersectionObserver" in window) {
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.style.opacity = "1";
-        entry.target.style.transform = "translateY(0)";
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
       }
     });
-  },
-  {
-    threshold: 0.15,
-  },
-);
+  }, { threshold: 0.14 });
+  revealItems.forEach((item) => revealObserver.observe(item));
+} else {
+  revealItems.forEach((item) => item.classList.add("visible"));
+}
 
-cards.forEach(function (card) {
-  card.style.opacity = "0";
-  card.style.transform = "translateY(30px)";
-  card.style.transition = "all 0.6s ease";
-  observer.observe(card);
+// Service carousels: buttons, arrow keys and horizontal swipe.
+document.querySelectorAll("[data-carousel]").forEach((carousel) => {
+  const slides = [...carousel.querySelectorAll(".carousel-slide")];
+  const count = carousel.querySelector(".carousel-count");
+  let index = 0;
+  let touchStart = 0;
+  const show = (next) => {
+    if (!slides.length) return;
+    slides[index].classList.remove("active");
+    index = (next + slides.length) % slides.length;
+    slides[index].classList.add("active");
+    if (count) count.textContent = `${String(index + 1).padStart(2, "0")} / ${String(slides.length).padStart(2, "0")}`;
+  };
+  carousel.querySelector("[data-prev]")?.addEventListener("click", () => show(index - 1));
+  carousel.querySelector("[data-next]")?.addEventListener("click", () => show(index + 1));
+  carousel.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowLeft") show(index - 1);
+    if (event.key === "ArrowRight") show(index + 1);
+  });
+  carousel.addEventListener("touchstart", (event) => { touchStart = event.changedTouches[0].clientX; }, { passive: true });
+  carousel.addEventListener("touchend", (event) => {
+    const delta = event.changedTouches[0].clientX - touchStart;
+    if (Math.abs(delta) > 45) show(index + (delta < 0 ? 1 : -1));
+  }, { passive: true });
+  show(0);
 });
 
-/*VISIT COUNTER */
-
-//for reseting count to 0:
-//localStorage.setItem("visitCount", 0);
-
-let visits = localStorage.getItem("visitCount");
-
-if (visits === null) {
-  visits = 1;
-} else {
-  visits = parseInt(visits) + 1;
-}
-
-localStorage.setItem("visitCount", visits);
-
-const counter = document.getElementById("visitCount");
-
-let current = 0;
-const target = visits;
-const duration = 1500; // 1.5 seconds
-
-const increment = target / (duration / 20);
-
-const counterAnimation = setInterval(() => {
-  current += increment;
-
-  if (current >= target) {
-    current = target;
-    clearInterval(counterAnimation);
-  }
-
-  counter.textContent = Math.floor(current);
-}, 20);
-
-const repairTarget = 500;
-const repairCounter = document.getElementById("repairCount");
-
-let repairCurrent = 0;
-
-const repairAnimation = setInterval(() => {
-  repairCurrent += 5;
-
-  if (repairCurrent >= repairTarget) {
-    repairCurrent = repairTarget;
-    clearInterval(repairAnimation);
-  }
-
-  repairCounter.textContent = repairCurrent + "+";
-}, 20);
-
-function changeImage(button, direction) {
-  const slider = button.closest(".card-image-slider");
-
-  const mainImage = slider.querySelector(":scope > img");
-
-  const images = slider.querySelectorAll(".slider-images img");
-
-  let currentIndex = 0;
-
-  // Find the current image
-  images.forEach((image, index) => {
-    if (image.src === mainImage.src) {
-      currentIndex = index;
-    }
+// Desktop-only card spotlight.
+if (finePointer && !reducedMotion) {
+  document.querySelectorAll(".tech-card").forEach((card) => {
+    card.addEventListener("pointermove", (event) => {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty("--x", `${event.clientX - rect.left}px`);
+      card.style.setProperty("--y", `${event.clientY - rect.top}px`);
+    });
   });
-
-  // Move to next/previous image
-  currentIndex += direction;
-
-  //last image from first
-  if (currentIndex < 0) {
-    currentIndex = images.length - 1;
-  }
-
-  //first image after last
-  if (currentIndex >= images.length) {
-    currentIndex = 0;
-  }
-
-  // Change image
-  mainImage.src = images[currentIndex].src;
 }
+
+function showToast(message) {
+  const toast = document.querySelector(".toast");
+  if (!toast) return;
+  toast.textContent = message;
+  toast.classList.add("show");
+  window.setTimeout(() => toast.classList.remove("show"), 3600);
+}
+
+function enquiryText(form) {
+  const data = new FormData(form);
+  return [
+    `Hello StavaTech, my name is ${data.get("name") || ""}.`,
+    `Email: ${data.get("email") || ""}`,
+    `Phone: ${data.get("phone") || "Not provided"}`,
+    `Company: ${data.get("company") || "Not provided"}`,
+    `I'm interested in: ${data.get("service") || "General enquiry"}`,
+    `Message: ${data.get("message") || ""}`,
+  ].join("\n");
+}
+
+// Static-host-safe contact actions: hand off to the visitor's email or WhatsApp app.
+const enquiryForm = document.querySelector("#contactForm");
+document.querySelector("#sendEmail")?.addEventListener("click", () => {
+  if (!enquiryForm?.reportValidity()) return;
+  const subject = encodeURIComponent(`Website enquiry — ${new FormData(enquiryForm).get("service") || "StavaTech"}`);
+  window.location.href = `mailto:${SITE_CONFIG.enquiryEmail}?subject=${subject}&body=${encodeURIComponent(enquiryText(enquiryForm))}`;
+});
+document.querySelector("#sendWhatsApp")?.addEventListener("click", () => {
+  if (!enquiryForm?.reportValidity()) return;
+  if (!SITE_CONFIG.whatsappNumber) {
+    showToast("WhatsApp is awaiting the official company number. Please use Send by Email.");
+    return;
+  }
+  window.open(`https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${encodeURIComponent(enquiryText(enquiryForm))}`, "_blank", "noopener,noreferrer");
+});
+enquiryForm?.addEventListener("submit", (event) => event.preventDefault());
+
+document.querySelectorAll("[data-whatsapp]").forEach((link) => {
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+    if (!SITE_CONFIG.whatsappNumber) {
+      showToast("WhatsApp is awaiting the official company number. Please contact us by email.");
+      return;
+    }
+    const greeting = "Hello StavaTech, I would like to discuss a technology/automation project with your team.";
+    window.open(`https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${encodeURIComponent(greeting)}`, "_blank", "noopener,noreferrer");
+  });
+});
+
+// The login screen is intentionally an integration preview, never a fake client-side login.
+document.querySelector("#loginForm")?.addEventListener("submit", (event) => {
+  event.preventDefault();
+  showToast("Secure account access is not connected yet. No credentials were submitted.");
+});
