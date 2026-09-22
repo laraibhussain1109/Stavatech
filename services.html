@@ -1,321 +1,292 @@
 <!doctype html>
-
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="assets/logo1.png" />
-    <link rel="stylesheet" href="style.css" />
-
-    <title>Services | StavaTech</title>
-  </head>
-
-  <body>
-    <!--NAVBAR-->
-
-    <nav class="navbar">
-      <a href="index.html" class="logo">
-        <img src="assets/logobg.png" alt="STAVATECH Logo" />
-      </a>
-
-      <ul class="nav-links">
-        <li>
-          <a href="index.html">Home</a>
-        </li>
-        <li>
-          <a href="about.html">About</a>
-        </li>
-        <li>
-          <a href="services.html" class="active">Services & Products</a>
-        </li>
-
-        <li>
-          <a href="join.html">Join Us</a>
-        </li>  
-
-        <li>
-          <a href="contact.html">Contact</a>
-        </li>
-      </ul>
-      <a href="mailto:info@stavatech.co.in" class="email-icon" title="Email Us">
-        ✉
-      </a>
-      <a
-        href="https://www.linkedin.com/company/stavatech/"
-        class="linkedin-icon"
-        title="Visit our LinkedIn"
-        target="_blank"
-      >
-        🇮🇳
-      </a>
-    </nav>
-
-    <section class="page-header">
-      <h1>Our Services</h1>
-
-      <p>Technology solutions designed to help businesses grow and succeed.</p>
-    </section>
-
-    <section>
-      <div class="section-title">
-        <h2>What We Offer</h2>
-
-        <p>
-          We provide a range of technology services tailored to meet different
-          business needs.
-        </p>
-      </div>
-
-      <div class="products-container">
-        <!-- PRODUCT 1 -->
-
-<div class="product-card">
-
-    <div class="card-image-slider">
-
-        <button class="slider-btn prev" onclick="changeImage(this, -1)">
-            &#10094;
-        </button>
-
-        <img src="assets/auto1.png" alt="Industrial Automation">
-
-        <button class="slider-btn next" onclick="changeImage(this, 1)">
-            &#10095;
-        </button>
-
-        <!--Images-->
-        <div class="slider-images">
-            <img src="assets/auto1.png">
-            <img src="assets/auto2.png">
-            <img src="assets/auto3.png">
-        </div>
-
-    </div>
-
-    <div class="product-content"> 
-        <h3>Industrial Automation</h3> 
- 
-        <p>
-            Customized automation solutions that improve efficiency,
-            precision, and productivity across industrial operations.
-        </p> 
- 
-        <a href="contact.html" class="btn">Learn More</a> 
-    </div> 
-
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Explore StavaTech industrial automation, telecom and SMT repair, AI, IoT and NEUROIRIS technology.">
+<meta name="theme-color" content="#050705">
+<link rel="icon" type="image/png" href="assets/logo1.png">
+<link rel="stylesheet" href="style.css">
+<title>Services & Products | STAVATECH</title>
+</head>
+<body class="">
+<a href="#main" style="position:fixed;left:-9999px;z-index:9999" onfocus="this.style.left='10px'">Skip to content</a>
+<div class="scroll-progress" aria-hidden="true">
 </div>
-
-        <!-- PRODUCT 2 -->
-
-<div class="product-card">
-
-    <div class="card-image-slider">
-
-        <button class="slider-btn prev" onclick="changeImage(this, -1)">
-            &#10094;
-        </button>
-
-        <img src="assets/img4.jpg" alt="Telecom & SMT range repairs">
-
-        <button class="slider-btn next" onclick="changeImage(this, 1)">
-            &#10095;
-        </button>
-
-        <!--Images-->
-        <div class="slider-images">
-            <img src="assets/rep1.png">
-            <img src="assets/rep2.png">
-            <img src="assets/rep4.png">
-            <img src="assets/img4.jpg">
-        </div>
-
-    </div>
-
-    <div class="product-content"> 
-        <h3>Telecom & SMT range repairs</h3> 
- 
-        <p>
-            Expert repair and restoration of telecom and SMT electronic equipment for 
-            reliable, efficient, and cost-effective performance.
-        </p> 
- 
-        <a href="contact.html" class="btn">Learn More</a> 
-    </div> 
-
+<header class="site-header">
+<nav class="nav" aria-label="Primary navigation">
+<a class="brand" href="index.html" aria-label="StavaTech home">
+<img src="assets/logobg.png" alt="STAVATECH TECHNOLOGY PVT LTD">
+</a>
+<ul class="nav-links" id="primary-menu">
+<li>
+<a href="index.html">Home</a>
+</li>
+<li>
+<a href="about.html">About</a>
+</li>
+<li>
+<a href="services.html">Services &amp; Products</a>
+</li>
+<li>
+<a href="join.html">Join Us</a>
+</li>
+<li>
+<a href="contact.html">Contact</a>
+</li>
+</ul>
+<div class="nav-actions">
+<a class="nav-cta" href="contact.html">Start a project</a>
+<button class="menu-btn" type="button" aria-label="Open navigation" aria-controls="primary-menu" aria-expanded="false">
+<span>
+</span>
+<span>
+</span>
+</button>
 </div>
-
-        <!-- PRODUCT 3 -->
-
-<div class="product-card">
-
-    <div class="card-image-slider">
-
-        <button class="slider-btn prev" onclick="changeImage(this, -1)">
-            &#10094;
-        </button>
-
-        <img src="assets/iot.webp" alt="AI & IOT Solutions">
-
-        <button class="slider-btn next" onclick="changeImage(this, 1)">
-            &#10095;
-        </button>
-
-        <!--Images-->
-        <div class="slider-images">
-            <img src="assets/ai1.png">
-            <img src="assets/ai2.png">
-            <img src="assets/ai3.png">
-            <img src="assets/iot.webp">
-        </div>
-
-    </div>
-
-    <div class="product-content"> 
-        <h3>AI & IOT Solutions</h3> 
- 
-        <p>
-          Intelligent AI and IoT solutions that enable real-time 
-          monitoring, smart decision-making, and connected operations.
-        </p> 
- 
-        <a href="contact.html" class="btn">Learn More</a> 
-    </div> 
-
+</nav>
+</header>
+<main id="main">
+<section class="page-hero">
+<div class="container">
+<p class="eyebrow">Services & Products</p>
+<h1>Engineering across the <span class="accent">industrial stack.</span>
+</h1>
+<p class="lead">Automation, electronics, artificial intelligence and connected systems—designed around real operational requirements.</p>
 </div>
-    </section>
-
-    <section>
-      <div class="section-title">
-        <h2>Our Working Process</h2>
-
-        <p>
-          A simple approach to turning your ideas into effective technology
-          solutions.
-        </p>
-      </div>
-
-      <div class="services-container">
-        <div class="service-card">
-          <div class="service-icon">1️⃣</div>
-
-          <h3>Understand</h3>
-
-          <p>We understand your business, requirements and objectives.</p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">2️⃣</div>
-
-          <h3>Plan</h3>
-
-          <p>
-            We create a clear strategy and development plan for the project.
-          </p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">3️⃣</div>
-
-          <h3>Develop</h3>
-
-          <p>
-            Our team develops and implements the required technology solution.
-          </p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">4️⃣</div>
-
-          <h3>Test</h3>
-
-          <p>
-            We test the solution to ensure quality, reliability and performance.
-          </p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">5️⃣</div>
-
-          <h3>Deliver</h3>
-
-          <p>
-            After successful testing, the solution is delivered to the client.
-          </p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">6️⃣</div>
-
-          <h3>Support</h3>
-
-          <p>We provide ongoing support and improvements when required.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="project">
-      <div class="project-content">
-        <h1>
-          Have a Project
-          <span>in Mind?</span>
-        </h1>
-
-        <p>
-          Let's discuss your requirements and build the right technology
-          solution for your business.
-        </p>
-
-        <a href="contact.html" class="btn"> Start a Project </a>
-      </div>
-    </section>
-
-    <footer>
-      <div class="footer-container">
-        <div class="footer-column">
-          <h3>StavaTech</h3>
-
-          <p>Innovative technology solutions for a digital future.</p>
-        </div>
-
-        <div class="footer-column">
-          <h3>Quick Links</h3>
-
-          <ul>
-            <li>
-              <a href="index.html">Home</a>
-            </li>
-
-            <li>
-              <a href="about.html">About</a>
-            </li>
-
-            <li>
-              <a href="services.html">Services</a>
-            </li>
-
-            <li>
-              <a href="product.html">Products</a>
-            </li>
-
-            <li>
-              <a href="contact.html">Contact</a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="footer-column">
-          <h3>Contact</h3>
-
-          <p>Email: info@stavatech.co.in</p>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <p>&copy; 2026 StavaTech. All Rights Reserved.</p>
-      </div>
-    </footer>
-
-    <button id="backToTop">↑</button>
-    <script src="script.js"></script>
-  </body>
+</section>
+<section class="section section--dark">
+<div class="container">
+<div class="section-head reveal">
+<div>
+<p class="eyebrow">What we offer</p>
+<h2>Capabilities in action.</h2>
+</div>
+<p class="lead">Browse the existing StavaTech solution categories and project imagery.</p>
+</div>
+<article class="service-panel reveal">
+<div class="carousel" data-carousel tabindex="0" aria-label="Industrial Automation image gallery">
+<img class="carousel-slide active" src="assets/auto1.png" alt="Industrial Automation — view 1" loading="lazy">
+<img class="carousel-slide " src="assets/auto2.png" alt="Industrial Automation — view 2" loading="lazy">
+<img class="carousel-slide " src="assets/auto3.png" alt="Industrial Automation — view 3" loading="lazy">
+<div class="carousel-controls">
+<button class="carousel-btn" data-prev type="button" aria-label="Previous image">←</button>
+<button class="carousel-btn" data-next type="button" aria-label="Next image">→</button>
+</div>
+<span class="carousel-count" aria-live="polite">
+</span>
+</div>
+<div class="service-copy">
+<p class="eyebrow">01 / AUTOMATION</p>
+<h2>Industrial Automation</h2>
+<p>Customized automation solutions that improve efficiency, precision and productivity across industrial operations.</p>
+<a href="contact.html" class="btn btn--primary">Discuss this solution<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M5 12h14M13 6l6 6-6 6"/>
+</svg>
+</a>
+</div>
+</article>
+<article class="service-panel reveal">
+<div class="service-copy">
+<p class="eyebrow">02 / ELECTRONICS</p>
+<h2>Telecom & SMT Range Repairs</h2>
+<p>Expert repair and restoration of telecom and SMT electronic equipment for reliable, efficient and cost-effective performance.</p>
+<a href="contact.html" class="btn btn--primary">Discuss this solution<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M5 12h14M13 6l6 6-6 6"/>
+</svg>
+</a>
+</div>
+<div class="carousel" data-carousel tabindex="0" aria-label="Telecom & SMT Range Repairs image gallery">
+<img class="carousel-slide active" src="assets/rep1.png" alt="Telecom & SMT Range Repairs — view 1" loading="lazy">
+<img class="carousel-slide " src="assets/rep2.png" alt="Telecom & SMT Range Repairs — view 2" loading="lazy">
+<img class="carousel-slide " src="assets/rep4.png" alt="Telecom & SMT Range Repairs — view 3" loading="lazy">
+<img class="carousel-slide " src="assets/img4.jpg" alt="Telecom & SMT Range Repairs — view 4" loading="lazy">
+<div class="carousel-controls">
+<button class="carousel-btn" data-prev type="button" aria-label="Previous image">←</button>
+<button class="carousel-btn" data-next type="button" aria-label="Next image">→</button>
+</div>
+<span class="carousel-count" aria-live="polite">
+</span>
+</div>
+</article>
+<article class="service-panel reveal">
+<div class="carousel" data-carousel tabindex="0" aria-label="AI & IoT Solutions image gallery">
+<img class="carousel-slide active" src="assets/ai1.png" alt="AI & IoT Solutions — view 1" loading="lazy">
+<img class="carousel-slide " src="assets/ai2.png" alt="AI & IoT Solutions — view 2" loading="lazy">
+<img class="carousel-slide " src="assets/ai3.png" alt="AI & IoT Solutions — view 3" loading="lazy">
+<img class="carousel-slide " src="assets/iot.webp" alt="AI & IoT Solutions — view 4" loading="lazy">
+<div class="carousel-controls">
+<button class="carousel-btn" data-prev type="button" aria-label="Previous image">←</button>
+<button class="carousel-btn" data-next type="button" aria-label="Next image">→</button>
+</div>
+<span class="carousel-count" aria-live="polite">
+</span>
+</div>
+<div class="service-copy">
+<p class="eyebrow">03 / INTELLIGENCE</p>
+<h2>AI & IoT Solutions</h2>
+<p>Intelligent AI and IoT solutions that enable real-time monitoring, smart decision-making and connected operations.</p>
+<a href="contact.html" class="btn btn--primary">Discuss this solution<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M5 12h14M13 6l6 6-6 6"/>
+</svg>
+</a>
+</div>
+</article>
+</div>
+</section>
+<section class="section neuro" id="products">
+<div class="container neuro-inner">
+<div class="reveal from-left">
+<p class="eyebrow">Product technology</p>
+<div class="neuro-name">NEUROIRIS</div>
+<h2>Intelligent automated inspection.</h2>
+<p class="lead" style="margin-top:22px">NEUROIRIS is StavaTech’s AI-powered vision platform for high-speed inspection, detection and precision measurement in manufacturing environments.</p>
+<div class="chip-row">
+<span class="chip">Computer Vision</span>
+<span class="chip">AI Inspection</span>
+<span class="chip">Detection</span>
+<span class="chip">Precision Measurement</span>
+<span class="chip">Automation</span>
+</div>
+<a href="contact.html" class="btn btn--primary">Discuss NEUROIRIS<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M5 12h14M13 6l6 6-6 6"/>
+</svg>
+</a>
+</div>
+<div class="iris reveal from-right" aria-hidden="true">
+</div>
+</div>
+</section>
+<section class="section">
+<div class="container">
+<div class="section-head reveal">
+<div>
+<p class="eyebrow">Working process</p>
+<h2>From requirement to <span class="accent">reliable delivery.</span>
+</h2>
+</div>
+<p class="lead">A practical six-stage approach to building effective technology solutions.</p>
+</div>
+<div class="process">
+<div class="process-step reveal">
+<span class="process-num">01</span>
+<h3>Understand</h3>
+<p>We understand your business, requirements and objectives.</p>
+</div>
+<div class="process-step reveal">
+<span class="process-num">02</span>
+<h3>Plan</h3>
+<p>We create a clear strategy and development plan.</p>
+</div>
+<div class="process-step reveal">
+<span class="process-num">03</span>
+<h3>Develop</h3>
+<p>Our team develops and implements the solution.</p>
+</div>
+<div class="process-step reveal">
+<span class="process-num">04</span>
+<h3>Test</h3>
+<p>We test for quality, reliability and performance.</p>
+</div>
+<div class="process-step reveal">
+<span class="process-num">05</span>
+<h3>Deliver</h3>
+<p>The tested solution is delivered to the client.</p>
+</div>
+<div class="process-step reveal">
+<span class="process-num">06</span>
+<h3>Support</h3>
+<p>We provide ongoing support and improvements when required.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="section section--light">
+<div class="container reveal" style="text-align:center">
+<p class="eyebrow">Have a project in mind?</p>
+<h2>Let’s build the right solution.</h2>
+<p class="lead" style="margin:20px auto 30px">Tell us about your operational challenge and technology requirements.</p>
+<a href="contact.html" class="btn btn--primary">Start a project<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M5 12h14M13 6l6 6-6 6"/>
+</svg>
+</a>
+</div>
+</section>
+</main>
+<aside class="social-rail" aria-label="Contact StavaTech">
+<a class="social-btn disabled" href="#" data-whatsapp aria-label="Chat with StavaTech on WhatsApp">
+<svg viewBox="0 0 24 24">
+<path d="M12 2a9.8 9.8 0 0 0-8.4 14.9L2 22l5.2-1.5A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-2.9-.4-4.2-1.1l-.3-.2-3 .9.9-2.9-.2-.3a8.2 8.2 0 1 1 6.8 3.6Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.3 0-.4.1-.5l.4-.5.2-.5v-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.4-.2.2-.9.9-.9 2.2 0 1.3.9 2.5 1.1 2.7.1.2 1.8 2.8 4.5 3.9.6.3 1.1.4 1.5.5.7.2 1.3.2 1.8.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.3-.3-.4-.5-.5Z"/>
+</svg>
+<span>Chat with our team</span>
+</a>
+<a class="social-btn" href="https://www.linkedin.com/company/stavatech/" target="_blank" rel="noopener noreferrer" aria-label="Visit StavaTech on LinkedIn">
+<svg viewBox="0 0 24 24">
+<path d="M5.3 7.8H1.8V22h3.5V7.8ZM3.5 2A2.1 2.1 0 1 0 3.5 6.2 2.1 2.1 0 0 0 3.5 2ZM22 13.9c0-4.3-2.3-6.3-5.4-6.3-2.5 0-3.6 1.4-4.2 2.3V7.8H8.9V22h3.5v-7c0-1.9.4-3.7 2.7-3.7 2.2 0 2.3 2.1 2.3 3.8V22H22v-8.1Z"/>
+</svg>
+<span>LinkedIn</span>
+</a>
+<a class="social-btn" href="mailto:info@stavatech.co.in" aria-label="Email StavaTech">
+<svg viewBox="0 0 24 24">
+<path d="M2 4h20v16H2V4Zm2 2v.5l8 5 8-5V6H4Zm16 12V8.9l-8 5-8-5V18h16Z"/>
+</svg>
+<span>Email us</span>
+</a>
+</aside>
+<div class="toast" role="status" aria-live="polite">
+</div>
+<button class="back-to-top" type="button" aria-label="Back to top">↑</button>
+<footer class="footer">
+<div class="container footer-grid">
+<div class="footer-brand">
+<a class="brand" href="index.html">
+<img src="assets/logobg.png" alt="StavaTech">
+</a>
+<p>Engineering innovative solutions through industrial automation, AI, computer vision, IoT and electronics.</p>
+</div>
+<div>
+<h3>Navigate</h3>
+<ul>
+<li>
+<a href="about.html">About</a>
+</li>
+<li>
+<a href="services.html">Services</a>
+</li>
+<li>
+<a href="services.html#products">NEUROIRIS</a>
+</li>
+<li>
+<a href="join.html">Careers</a>
+</li>
+</ul>
+</div>
+<div>
+<h3>Solutions</h3>
+<ul>
+<li>Industrial Automation</li>
+<li>AI &amp; Computer Vision</li>
+<li>IoT Solutions</li>
+<li>Electronics Repair</li>
+</ul>
+</div>
+<div>
+<h3>Connect</h3>
+<address>
+<a href="mailto:info@stavatech.co.in">info@stavatech.co.in</a>
+<br>
+<a href="https://www.linkedin.com/company/stavatech/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+<br>
+<a href="#" data-whatsapp>WhatsApp enquiries</a>
+</address>
+</div>
+</div>
+<div class="container footer-bottom">
+<span>© 2026 STAVATECH TECHNOLOGY PVT LTD. All rights reserved.</span>
+<span>Innovation on Rise</span>
+</div>
+</footer>
+<script src="script.js">
+</script>
+</body>
 </html>
